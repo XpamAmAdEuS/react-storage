@@ -1,0 +1,72 @@
+{
+  "name": "@xpam/react-storage",
+  "description": "React local and session storage",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/XpamAmAdEuS/react-storage.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "Deepu KS",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/XpamAmAdEuS/react-storage/issues"
+  },
+  "main": "lib/index.js",
+  "exports": "./lib/index.js",
+  "typings": "lib/index.d.ts",
+  "types": "lib/index.d.ts",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "files": [
+    "src",
+    "lib",
+    "LICENCE.txt",
+    "NOTICE",
+    "README.md",
+    "index.ts"
+  ],
+  "homepage": "https://github.com/XpamAmAdEuS",
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
+  "dependencies": {
+    "tslib": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/webpack-env": "^1.16.3",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
+    "eslint": "^8.3.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.27.1",
+    "prettier": "^2.5.0",
+    "react": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.5.2"
+  },
+  "version": "1.0.0",
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "prettier --write",
+      "npm run lint:fix",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "precommit": "lint-staged",
+    "prettier:format": "prettier --write '**/*.{ts,tsx}'",
+    "cleanup": "rimraf lib/* src/*.d.ts src/**/*.d.ts src/*.{js,jsx} src/**/*.{js,jsx}",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
+    "lint:fix": "npm run lint -- --fix",
+    "build": "npm run cleanup && npm run tsc",
+    "release": "git push && git push --tags && npm publish",
+    "commit-lib": "git add lib && git commit --allow-empty -m \"Update libs\"",
+    "release:patch": "npm run build && npm run commit-lib && npm version patch -a -m \"Update to %s\" && npm run release",
+    "release:minor": "npm run build && npm run commit-lib && npm version minor -a -m \"Update to %s\" && npm run release",
+    "release:major": "npm run build && npm run commit-lib && npm version major -a -m \"Update to %s\" && npm run release"
+  }
+}
